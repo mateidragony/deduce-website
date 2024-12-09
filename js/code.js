@@ -1,66 +1,65 @@
-const cb00 = `
-function search(List<Nat>, Nat) -> Nat {
-  search(empty, y) = 0
-  search(node(x, xs), y) =
-    if x = y then 0
-    else suc(search(xs, y))
-}`
-
-const cb01 = `
-theorem zero_add: all n:Nat.
-  0 + n = n
-proof
-  arbitrary n:Nat
-  conclude 0 + n = n by definition operator+
-end`
-
-const cb02 = `
-function search(List<Nat>, Nat) -> Nat {
-  search(empty, y) = 0
-  search(node(x, xs), y) =
-    if x = y then 0
-    else suc(search(xs, y))
-}
-
-theorem search_take: all xs: List<Nat>. all y:Nat.
-    not (y ∈ set_of(take(search(xs, y), xs)))
-proof
-  induction List<Nat>
-  case empty {
-    arbitrary y:Nat
-    suffices not (y ∈ ∅) by definition {search, take, set_of}
-    empty_no_members<Nat>
-  }
-  case node(x, xs') suppose
-    IH: (all y:Nat. not (y ∈ set_of(take(search(xs', y), xs'))))
-  {
-    arbitrary y:Nat
-    switch x = y for search {
-      case true {
-        suffices not (y ∈ ∅) by definition {take, set_of}
-        empty_no_members<Nat>
-      }
-      case false assume xy_false: (x = y) = false {
-        suffices not (y ∈ single(x) ∪ set_of(take(search(xs', y), xs')))
-            by definition {take, set_of}
-        suppose c: y ∈ single(x) ∪ set_of(take(search(xs', y), xs'))
-        cases (apply member_union<Nat> to c)
-        case y_in_x: y ∈ single(x) {
-          have: x = y by apply single_equal<Nat> to y_in_x
-          conclude false by rewrite xy_false in (recall x = y)
-        }
-        case y_in_rest: y ∈ set_of(take(search(xs', y), xs')) {
-          conclude false by apply IH to y_in_rest
-        }
-      }
-    }
-  }
-end`
-
-
-
-const codeBlocks = {
-    "home-example1" : cb00,
-    "home-example2" : cb01,
-    "home-example3" : cb02,
-}
+const codeBlocks = [
+  "home_example1",
+  "home_example2",
+  "home_example3",
+  "reference_add_example",
+  "reference_add_multiset_example",
+  "reference_all_example_bool",
+  "reference_all_example_intro",
+  "reference_all_example_elim",
+  "reference_and_example",
+  "reference_and_example_intro",
+  "reference_and_example_elim",
+  "reference_append_example",
+  "reference_apply_to_example",
+  "reference_arbitrary_example",
+  "reference_assert_example",
+  "reference_assume_example",
+  "reference_call_example",
+  "reference_choose_example",
+  "reference_compose_example",
+  "reference_conclude_example",
+  "reference_conjunct_example",
+  "reference_define_example",
+  "reference_define_term_example",
+  "reference_define_proof_example",
+  "reference_definition_example",
+  "reference_definition_in_example",
+  "reference_division_example",
+  "reference_equations_example",
+  "reference_extensionality_example",
+  "reference_function_term_example",
+  "reference_print_area",
+  "reference_function_example",
+  "reference_generic_example",
+  "reference_greater_example",
+  "reference_greater_equal_example",
+  "reference_if_then_else_example",
+  "reference_membership_example",
+  "reference_induction_example",
+  "reference_injective_example",
+  "reference_instantiate_proof_example",
+  "reference_instantiate_example",
+  "reference_intersect_example",
+  "reference_less_than_example",
+  "reference_less_equal_example",
+  "reference_list_example",
+  "reference_mark_example",
+  "reference_mod_example",
+  "reference_multiply_example",
+  "reference_obtain_example",
+  "reference_or_example",
+  "reference_or_example_intro1",
+  "reference_or_example_intro2",
+  "reference_print_example",
+  "reference_rewrite_example",
+  "reference_rewrite_in_example",
+  "reference_switch_example",
+  "reference_switch_proof_example",
+  "reference_subset_example",
+  "reference_subtract_example",
+  "reference_suffices_example",
+  "reference_true_example",
+  "reference_union_example",
+  "reference_set_union_example",
+]
