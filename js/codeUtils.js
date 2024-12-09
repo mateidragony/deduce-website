@@ -103,7 +103,7 @@ for (let cb of codeBlocks) {
         const htmlCode = document.getElementById(cb)
         if (htmlCode == undefined) continue;
 
-        fetch(`${"../".repeat(dir.split("/").length)}deduce-code/${cb}.pf`)
+        fetch(`${dir.includes("pages") ? "../" : "./" }deduce-code/${cb}.pf`)
 
             .then(res => res.text())
             .then(codeText => {
