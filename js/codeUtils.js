@@ -94,13 +94,17 @@ function removeImports(code){
     return split.join("\n")
 }
 
+
+const loc = window.location.pathname;
+const dir = loc.substring(0, loc.lastIndexOf('/'));
 // set codeblocks
 for (let cb of codeBlocks) {
     try {
         const htmlCode = document.getElementById(cb)
         if (htmlCode == undefined) continue;
 
-        fetch(`../deduce-code/${cb}.pf`)
+        fetch(`${"../".repeat(dir.split("/").length)}deduce-code/${cb}.pf`)
+
             .then(res => res.text())
             .then(codeText => {
                 codeText = removeImports(codeText);
@@ -114,7 +118,7 @@ for (let cb of codeBlocks) {
                 copyButton.setAttribute("title", "Copy code")
 
                 copyButton.onclick = () => {
-                    if (navigator) {
+                    if (navigator) {T3
                         navigator.clipboard.writeText(codeText[0] == '\n' ? codeText.substring(1) : codeText)
                         copyTooltip.innerHTML = "Copied!"
                     } else {
