@@ -1,7 +1,7 @@
-const operators = ["->", "\\+\\+", "\\/", "\\|", "&", "\\[\\+\\]", "\\[o\\]", "\\(=", "<=",
-    ">=", "\\/=", "≠", "⊆", "≤", "≥", "∈", "∪", "\\+", "%", "\\*", "⨄", "-",
+const operators = ["->", "\\+\\+", "(?<!\\/|\\*)\\/(?!\\/|\\*)", "\\|", "&", "\\[\\+\\]", "\\[o\\]", "\\(=", "<=",
+    ">=", "\\/=", "≠", "⊆", "≤", "≥", "∈", "∪", "\\+", "%", "(?<!\\/)\\*(?!\\/)", "⨄", "-",
     "∩", "∘", "λ", "@", ":", "&gt;", "&lt;", "\\(", "\\)", "{", "}", ",", "=",
-    "\\."]
+    "\\.", "\\[", "\\]", ";", "#"]
 
 const prims = ["true", "false", "0", "[0-9]+", "empty"]
 
@@ -44,17 +44,19 @@ function codeToHTML(code) {
     const uniRe = new RegExp("(?<=\\bunion\\s)\\w+(?=\\s*<)?", "g")
     const defRe = new RegExp("(?<=\\bdefine\\s)\\w+(?=\\s*:)?", "g")
     let userDefs = []
-        .concat([...code.matchAll(fncRe)][0])
-        .concat([...code.matchAll(thmRe)][0])
-        .concat([...code.matchAll(uniRe)][0])
-        .concat([...code.matchAll(defRe)][0])
-    userDefs = userDefs.filter(e => e !== undefined)
+        .concat(Array.from(code.matchAll(fncRe)).flat())
+        .concat(Array.from(code.matchAll(thmRe)).flat())
+        .concat(Array.from(code.matchAll(uniRe)).flat())
+        .concat(Array.from(code.matchAll(defRe)).flat())
+    userDefs = userDefs.filter(e => e !== undefined && e !== "operator")
+
     // prep regex
     const ore = new RegExp(getRegexSymbols(operators), "g")
     const pre = new RegExp(getRegex(prims) + "|" + getRegexSymbols(primsSym), "g")
     const tre = new RegExp(getRegex(types), "g")
     const kre = new RegExp(getRegex(keywords), "g")
     const dre = new RegExp(getRegex(defines.concat(userDefs)), "g")
+    const cre = new RegExp("(\\/\\*(.|\r|\n)+\\*\\/|\\/\\/.+)", "g")
     // remove first new line
     code = (code[0] == '\n' ? code.substring(1) : code)
     // fixing things for html
@@ -63,6 +65,7 @@ function codeToHTML(code) {
     // (heavy quote) lexing (heavy quote)
     code = code.replaceAll(" ", "\x00"); // temporary
     code = code.replaceAll(ore, "<span class=\"operator\">$&</span>");
+    code = code.replaceAll(cre, "<span class=\"comment\">$&</span>");
     code = code.replaceAll(pre, "<span class=\"prim\">$&</span>");
     code = code.replaceAll(tre, "<span class=\"type\">$&</span>");
     code = code.replaceAll(kre, "<span class=\"keyword\">$&</span>");
@@ -118,7 +121,7 @@ for (let cb of codeBlocks) {
                 copyButton.setAttribute("title", "Copy code")
 
                 copyButton.onclick = () => {
-                    if (navigator) {T3
+                    if (navigator) {
                         navigator.clipboard.writeText(codeText[0] == '\n' ? codeText.substring(1) : codeText)
                         copyTooltip.innerHTML = "Copied!"
                     } else {

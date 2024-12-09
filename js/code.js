@@ -62,4 +62,5 @@ const codeBlocks = [
   "reference_true_example",
   "reference_union_example",
   "reference_set_union_example",
+  "reference_trichotomy_example",
 ]

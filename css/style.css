@@ -25,6 +25,7 @@
     --cb-prim: #f18bea;
     --cb-ty: #b689fe;
     --cb-st: #3beb84;
+    --cb-comm: #999999;
 }
 
 /*
@@ -67,8 +68,11 @@ a:active {
     General spacing
 */
 
-p {
+p, td{
     line-height: 1.5;
+}
+
+p{
     margin: 10px 0;
 }
 
@@ -306,6 +310,13 @@ header {
             color: var(--cb-ty);
         }
 
+        span.comment {
+            color: var(--cb-comm) !important;
+            *{
+                color: var(--cb-comm) !important;
+            }
+        }
+
         button {
             position: absolute;
             top: 0;
@@ -394,6 +405,8 @@ header {
     background-color: var(--very-light-gray);
 
     code {
+        font-size: .9rem;
+        font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
         color: var(--black)
     }
 }
@@ -658,6 +671,10 @@ table.cheat-sheet{
     margin-top: 50px;
 }
 
+h3.reference:first-of-type{
+    margin-top: 40px;
+}
+
 
 /* MEDIA QUERIES FROM LARGEST TO SMALLEST */
 
@@ -780,6 +797,12 @@ table.cheat-sheet{
     .code-wrapper {
         code {
             font-size: .75rem;
+        }
+    }
+
+    .code-wrapper.non-deduce {
+        code {
+            font-size: .7rem;
         }
     }
 
