@@ -1,0 +1,8 @@
+import Nat
+import List
+
+
+theorem really_trivial: true
+proof
+  .
+end

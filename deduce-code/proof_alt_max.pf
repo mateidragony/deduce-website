@@ -1,0 +1,5 @@
+import Nat
+import List
+
+
+define max' = λx:Nat, y:Nat { if x ≤ y then y else x }

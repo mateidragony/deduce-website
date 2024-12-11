@@ -52,6 +52,10 @@ h3{
     font-size: 1.5rem;
 }
 
+h4{
+    font-size: 1.1rem;
+}
+
 a,
 a:link,
 a:visited {
@@ -91,6 +95,10 @@ h3{
 
 h3:not(:first-of-type){
     margin-top: 60px;
+}
+
+h4{
+    margin: 40px 0 0;
 }
 
 .code-wrapper{
@@ -671,8 +679,21 @@ table.cheat-sheet{
     margin-top: 50px;
 }
 
-h3.reference:first-of-type{
+h3.reference:first-of-type, h3.programming:first-of-type, h3.proof:first-of-type{
     margin-top: 40px;
+}
+
+.first-in-section{
+    margin-top: 0;
+}
+
+.code-wrapper.programming, .code-wrapper.proof{
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.code-wrapper.exercise{
+    margin-top: 15px;
 }
 
 

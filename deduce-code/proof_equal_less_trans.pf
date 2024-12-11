@@ -1,0 +1,9 @@
+import Nat
+import List
+
+
+theorem equal_less_trans: all x:Nat, y:Nat, z:Nat.
+  if x = y and y ≤ z then x ≤ z
+proof
+  ?
+end
