@@ -218,6 +218,7 @@ nav {
 header {
     display: flex;
     justify-content: space-between;
+    gap: 10px;
 
     padding: 75px 0 50px;
 
@@ -694,6 +695,10 @@ h3.reference:first-of-type, h3.programming:first-of-type, h3.proof:first-of-type
 
 .code-wrapper.exercise{
     margin-top: 15px;
+}
+
+.minimap{
+    display: none;
 }
 
 
