@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Deduce | Home</title>
+    <title>Deduce | Sandbox</title>
 
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="./images/logo.svg">
@@ -24,7 +24,7 @@
 
 <body>
 
-    <div class="container">
+    <div id="sandbox" class="container">
 
         <nav>
             <a class="nav-logo" href="./index.html">
@@ -67,11 +67,25 @@
         </nav>
 
         <h1>Deduce Sandbox</h1>
-        <div id="container" style="width: 800px; height: 600px; border: 0px solid grey"></div>
+        <div class="sandbox">
+            <div class="in put">
+                <label for="container">input.pf</label>
+                <div id="container"></div>
+            </div>
+            <div aria-hidden="true" id="resizer-ns" class="resizer"></div>
+            <div aria-hidden="true" id="resizer-ew" class="resizer"></div>
+            <div class="controls">
+                <button id="submit"><i class="fa-solid fa-play"></i></button>
+                <button><i class="fa-solid fa-sun"></i></button>
+                <button><i class="fa-solid fa-eraser"></i></button>
+                <button><i class="fa-solid fa-clone"></i></button>
+            </div>
+            <div class="out put">
+                <label for="code-output">output</label>
+                <p id="code-output"></p>
+            </div>
+        </div>
 
-        <button id="submit">Submit</button> <br>
-        <label for="code-output">Deduce output:</label>
-        <p id="code-output"></p>
 
         <footer>
             <a class="nav-logo" href="./index.html">
