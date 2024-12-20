@@ -764,6 +764,10 @@ h3.reference:first-of-type, h3.programming:first-of-type, h3.proof:first-of-type
                 *{
                     font-family: 'JetBrains Mono', monospace !important;
                 }
+
+                .codicon{
+                    font-family: 'codicon' !important;
+                }
         
                 .monaco-editor{
                     padding-top: 10px;
@@ -814,6 +818,8 @@ h3.reference:first-of-type, h3.programming:first-of-type, h3.proof:first-of-type
 
                 border: solid var(--white) 2px;
                 border-radius: 5px;
+
+                text-align: center;
 
                 transition: background-color var(--trans-duration);
             }
@@ -972,6 +978,20 @@ h3.reference:first-of-type, h3.programming:first-of-type, h3.proof:first-of-type
     section.blocks {
         article {
             width: 100%;
+        }
+    }
+
+    #sandbox{
+        .sandbox{
+            .controls{
+                button{
+                    font-size: .75rem;
+                }
+            }
+
+            .overlayWidgets{
+                display: none !important;
+            }
         }
     }
 }
