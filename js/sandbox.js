@@ -1,8 +1,33 @@
-//
-// TODO: . does not style
-//
+const isMobile = window.innerWidth < 990;
 
+let editor;
+let fontSize = window.innerWidth > 990 ? 14 : 12;
+let theme = 'deduce-dark';
 
+const deduceServerURL = "https://deduce.vercel.app/deduce"
+
+const themeIn = document.getElementById("theme")
+const sizeIn = document.getElementById("font-size")
+const butt = document.getElementById("submit")
+const output = document.getElementById("code-output")
+const copyButt = document.getElementById("copy-code")
+const downloadButt = document.getElementById("download-code")
+
+const themeBgs = {
+    "deduce-dark": "#202022",
+    "deduce": "#fefef8",
+    "vs-dark": "#1e1e1e",
+    "vs": "#fffffe",
+    "hc-black": "#000",
+}
+const darkThemes = ["deduce-dark", "vs-dark", "hc-black"]
+
+themeIn.value = theme;
+sizeIn.value = fontSize;
+
+/**
+ * Monaco
+ */
 
 require.config({ paths: { vs: 'https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.29.1/min/vs/' } });
 
@@ -14,6 +39,28 @@ window.MonacoEnvironment = {
         )}`;
     }
 };
+
+function create_editor(fs, tm) {
+    fontSize = fs
+    theme = tm
+
+    let value = "// Enter deduce code here\n\n\n";
+
+    if (editor) {
+        value = editor.getValue()
+        editor.dispose()
+    }
+    editor = monaco.editor.create(document.getElementById('container'), {
+        fontSize: fontSize,
+        fontFamily: 'JetBrains Mono',
+        fontLigatures: true,
+        theme: theme,
+        value: value,
+        language: 'deduce',
+        automaticLayout: true,
+        tabSize: 2,
+    });
+}
 
 require(['vs/editor/editor.main'], function () {
     monaco.languages.register({
@@ -109,65 +156,95 @@ require(['vs/editor/editor.main'], function () {
         },
     });
     monaco.editor.defineTheme('deduce-dark', {
-        colors: {},
         base: 'vs-dark',
         inherit: false,
         rules: [
+            { token: "", background: "1e1e1e" },
             { token: 'keyword', foreground: 'e9cc60' },
             { token: 'typeKeyword', foreground: 'b689fe' },
             { token: 'operator', foreground: 'cfd6e3' },
             { token: 'brackets', foreground: 'cfd6e3' },
-            { token: 'typeKeyword', foreground: 'b689fe' },
             { token: 'number', foreground: 'f18bea' },
             { token: 'primitive', foreground: 'f18bea' },
             { token: 'comment', foreground: '999999' },
             { token: 'defined', foreground: '67bef9' },
             { token: 'identifier', foreground: 'fa7188' },
-        ]
+        ],
+        colors: {
+            "editor.background": "#202022",
+            "editor.lineHighlightBackground": "#D7D7D708",
+        }
+    });
+    monaco.editor.defineTheme('deduce', {
+        base: 'vs',
+        inherit: false,
+        rules: [
+            { token: "", background: "fefef8" },
+            { token: 'keyword', foreground: 'd85311' },
+            { token: 'typeKeyword', foreground: '0f95af' },
+            { token: 'operator', foreground: '2e2d31' },
+            { token: 'brackets', foreground: '2e2d31' },
+            { token: 'number', foreground: '9329ab' },
+            { token: 'primitive', foreground: '9329ab' },
+            { token: 'comment', foreground: '666666' },
+            { token: 'defined', foreground: 'c553e9' },
+            { token: 'identifier', foreground: '2e2d31' },
+        ],
+        colors: {
+            "editor.background": "#fefef8",
+            "editor.lineHighlightBackground": "#D7D7D708",
+        }
     });
 
-    const editor = monaco.editor.create(document.getElementById('container'), {
-        theme: 'deduce-dark',
-        value: "// Enter deduce code here\n\n\n",
-        language: 'deduce',
-        automaticLayout: true
-    });
-
-    const butt = document.getElementById("submit")
-    const output = document.getElementById("code-output")
-
-    const deduceServerURL = "https://deduce.vercel.app/deduce"
-
-    function prepare_output(out, is_err = false, re_sp = true) {
-        out = out.replaceAll("\n", "<br>")
-        out = out.replaceAll("\t", "    ")
-        out = re_sp ? out.replaceAll(" ", "&nbsp;") : out
-        return is_err ? `<span class="error">${out}</span>` : out
-    }
-
-    function send_deduce(code) {
-        output.innerHTML = '<div class="loader">Deducing<span></span></div>'
-        fetch(deduceServerURL, {
-            method: "POST",
-            body: code
-        })
-            .then(res => {
-                if (res.ok) {
-                    return res.text()
-                }
-                throw new Error('')
-            })
-            .then(data => output.innerHTML = prepare_output(data))
-            .catch(error => output.innerHTML = prepare_output('Something went wrong internally.\nIf this error persists please reach us at <a href="mailto:jsiek@iu.edu">jsiek@iu.edu</a>.',
-                is_err = true,
-                re_sp = false))
-    }
-
-
-    butt.onclick = () => send_deduce(editor.getValue())
+    create_editor(fontSize, theme)
 });
 
+function prepare_output(out, is_err = false, re_sp = true) {
+    out = out.replaceAll("\n", "<br>")
+    out = out.replaceAll("\t", "    ")
+    out = re_sp ? out.replaceAll(" ", "&nbsp;") : out
+    return is_err ? `<span class="error">${out}</span>` : out
+}
 
+function send_deduce(code) {
+    output.innerHTML = '<div class="loader">Deducing<span></span></div>'
+    fetch(deduceServerURL, {
+        method: "POST",
+        body: code
+    })
+        .then(res => {
+            if (res.ok) {
+                return res.text()
+            }
+            throw new Error('')
+        })
+        .then(data => output.innerHTML = prepare_output(data))
+        .catch(err => output.innerHTML = prepare_output('Something went wrong internally.\nIf this error persists please reach us at <a href="mailto:jsiek@iu.edu">jsiek@iu.edu</a>.',
+            is_err = true,
+            re_sp = false))
+}
+
+function themeUpdate(create = true) {
+    if (create) create_editor(fontSize, themeIn.value)
+    output.style.backgroundColor = themeBgs[themeIn.value]
+    if (darkThemes.includes(themeIn.value)) output.classList.add("dark")
+    else output.classList.remove("dark")
+}
+function sizeUpdate(create = true) {
+    let size = Math.min(Math.max(sizeIn.value, sizeIn.min), sizeIn.max)
+    if (create) create_editor(size, theme)
+    output.style.fontSize = size + "px";
+}
+
+butt.onclick = () => send_deduce(editor.getValue())
+themeIn.oninput = themeIn.onload = themeUpdate
+sizeIn.oninput = sizeIn.onload = sizeUpdate
+sizeIn.onblur = () => sizeIn.value = Math.min(Math.max(sizeIn.value, sizeIn.min), sizeIn.max)
+
+
+/**
+ * Resizer nonsense
+ */
 
 const resizerNS = document.querySelector('#resizer-ns');
 const resizerEW = document.querySelector('#resizer-ew');
@@ -210,10 +287,8 @@ document.addEventListener('mousemove', function (e) {
         container.style.width = (Math.max(containerMin, pointerRelativeXpos - 8)) + 'px';
         container.style.flexGrow = 0;
     } else if (isHandlerDraggingNS) {
-
-        console.log("heheheha")
         container.style.height = (Math.max(containerMin, pointerRelativeYpos - 8)) + 'px';
-        // container.style.flexGrow = 0;
+        container.style.flexGrow = 0;
     }
 });
 
@@ -223,3 +298,35 @@ document.addEventListener('mouseup', function (e) {
     isHandlerDraggingEW = false;
 });
 
+/**
+ * Download and copy buttons
+ */
+
+copyButt.onclick = () => {
+    if (navigator) {
+        navigator.clipboard.writeText(editor.getValue())
+        alert("Code copied to clipboard!")
+    } else {
+        alert("Error copying code to clipboard.")
+    }
+}
+
+downloadButt.onclick = () => download("input.pf", editor.getValue())
+if(isMobile) downloadButt.style.display = "none"
+
+function download(filename, text) {
+    var element = document.createElement('a');
+    element.setAttribute('href', 'data:plain;charset=utf-8,' + encodeURIComponent(text));
+    element.setAttribute('download', filename);
+
+    element.style.display = 'none';
+    document.body.appendChild(element);
+
+    element.click();
+
+    document.body.removeChild(element);
+}
+
+// Not really necessary but hey
+themeUpdate(false)
+sizeUpdate(false)
