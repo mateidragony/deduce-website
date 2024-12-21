@@ -253,25 +253,30 @@ const container = wrapper.querySelector('.in');
 let isHandlerDraggingNS = false;
 let isHandlerDraggingEW = false;
 
-document.addEventListener('mousedown', function (e) {
+document.addEventListener('mousedown', e => {
     // If mousedown event is fired from .handler, toggle flag to true
     if (e.target === resizerNS) {
         isHandlerDraggingNS = true;
+        e.preventDefault()
     }
     if (e.target === resizerEW) {
         isHandlerDraggingEW = true;
+        e.preventDefault()
     }
 });
 
-document.addEventListener('mousemove', function (e) {
+
+document.addEventListener('mousemove', e => {
     // Don't do anything if dragging flag is false
     if (!isHandlerDraggingNS && !isHandlerDraggingEW) {
         return false;
     }
 
+    e.preventDefault()
+
     // Get offset
-    var containerOffsetLeft = wrapper.offsetLeft;
-    var containerOffsetTop = wrapper.offsetTop;
+    var containerOffsetLeft = container.offsetLeft;
+    var containerOffsetTop = container.offsetTop;
 
     // Get x-coordinate of pointer relative to container
     var pointerRelativeXpos = e.clientX - containerOffsetLeft;
@@ -281,22 +286,28 @@ document.addEventListener('mousemove', function (e) {
     var containerMin = 60;
 
     // Resize box A
-    // * 8px is the left/right spacing between .handler and its inner pseudo-element
-    // * Set flex-grow to 0 to prevent it from growing
     if (isHandlerDraggingEW) {
-        container.style.width = (Math.max(containerMin, pointerRelativeXpos - 8)) + 'px';
+        container.style.width = (Math.max(containerMin, pointerRelativeXpos - 8)) - 
+                                (resizerEW.clientWidth / 2 )  + 'px';
         container.style.flexGrow = 0;
     } else if (isHandlerDraggingNS) {
-        container.style.height = (Math.max(containerMin, pointerRelativeYpos - 8)) + 'px';
+        container.style.height = (Math.max(containerMin, pointerRelativeYpos - 8)) -
+                                 (resizerNS.clientHeight / 2) + 'px';
         container.style.flexGrow = 0;
     }
 });
 
-document.addEventListener('mouseup', function (e) {
+document.addEventListener('mouseup', e => {
     // Turn off dragging flag when user mouse is up
     isHandlerDraggingNS = false;
     isHandlerDraggingEW = false;
 });
+
+document.addEventListener('mouseleave', e => {
+    // Turn off dragging flag when user mouse is gone
+    isHandlerDraggingNS = false;
+    isHandlerDraggingEW = false;
+})
 
 /**
  * Download and copy buttons
