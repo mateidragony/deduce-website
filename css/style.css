@@ -12,7 +12,7 @@
     --gray: #bbb;
     --dark-gray: #666;
     --dark-blue: #0c6ed8;
-    --dark-red: #c50f2e; 
+    --dark-red: #c50f2e;
 
     --trans-duration: .15s;
 
@@ -282,31 +282,36 @@ header {
             margin: 20px 0 0;
         }
 
-        a,
-        a:link,
-        a:visited {
-            display: block;
-            width: fit-content;
+        .buttons {
+            display: flex;
+            gap: 40px;
 
-            margin-top: 35px;
-            padding: 15px 20px;
-            border-radius: 4px;
+            a,
+            a:link,
+            a:visited {
+                display: block;
+                width: fit-content;
 
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 1.5rem;
+                margin-top: 35px;
+                padding: 15px 20px;
+                border-radius: 4px;
 
-            color: var(--pink);
-            background-color: var(--white);
-            border: solid var(--pink) 4px;
+                text-decoration: none;
+                font-weight: 500;
+                font-size: 1.5rem;
 
-            transition: background-color var(--trans-duration), color var(--trans-duration);
-        }
+                color: var(--pink);
+                background-color: var(--white);
+                border: solid var(--pink) 4px;
 
-        a:hover,
-        a:active {
-            background-color: var(--pink);
-            color: var(--white);
+                transition: background-color var(--trans-duration), color var(--trans-duration);
+            }
+
+            a:hover,
+            a:active {
+                background-color: var(--pink);
+                color: var(--white);
+            }
         }
     }
 
@@ -770,12 +775,12 @@ h3.proof:first-of-type {
 
         flex-wrap: wrap;
 
-        .coding{
+        .coding {
             display: flex;
             gap: 8px;
         }
 
-        .styling{
+        .styling {
             display: flex;
             align-items: center;
             gap: 15px;
@@ -797,11 +802,11 @@ h3.proof:first-of-type {
             transition: background-color var(--trans-duration);
         }
 
-        button:hover{
+        button:hover {
             background-color: var(--light-gray);
         }
 
-        button:active{
+        button:active {
             background-color: var(--gray);
         }
 
@@ -809,7 +814,7 @@ h3.proof:first-of-type {
             color: var(--white);
             background-color: var(--blue);
 
-            span{
+            span {
                 margin-left: 10px;
                 font-family: 'Inter', sans-serif;
             }
@@ -827,12 +832,13 @@ h3.proof:first-of-type {
             outline: solid var(--blue) 2px;
         }
 
-        input, select{
+        input,
+        select {
             font-family: 'Inter', sans-serif;
             padding: 5px;
         }
 
-        label{
+        label {
             margin-right: -8px;
         }
     }
@@ -922,7 +928,7 @@ h3.proof:first-of-type {
                 }
             }
 
-            p.dark{
+            p.dark {
                 color: var(--white);
 
                 .error {
@@ -986,8 +992,8 @@ h3.proof:first-of-type {
                 height: var(--sb-height);
             }
 
-            .out{
-                p{
+            .out {
+                p {
                     font-size: 12px;
                 }
             }
@@ -1009,9 +1015,9 @@ h3.proof:first-of-type {
 }
 
 @media (min-width: 991.99px) {
-    #sandbox{
-        .sandbox{
-            .in{
+    #sandbox {
+        .sandbox {
+            .in {
                 width: 50%;
                 height: var(--sb-height) !important;
             }
@@ -1111,12 +1117,16 @@ h3.proof:first-of-type {
                 margin: 20px 0 0;
             }
 
-            a,
-            a:link {
-                margin-top: 30px;
-                padding: 10px 15px;
+            .buttons{
+                gap: 20px;
 
-                font-size: 1.25rem;
+                a,
+                a:link {
+                    margin-top: 30px;
+                    padding: 10px 15px;
+
+                    font-size: 1.25rem;
+                }
             }
         }
 
