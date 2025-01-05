@@ -265,6 +265,7 @@ document.addEventListener('mousedown', e => {
     }
 });
 
+const god = document.getElementById("god");
 
 document.addEventListener('mousemove', e => {
     // Don't do anything if dragging flag is false
@@ -275,15 +276,17 @@ document.addEventListener('mousemove', e => {
     e.preventDefault()
 
     // Get offset
-    var containerOffsetLeft = container.offsetLeft;
-    var containerOffsetTop = container.offsetTop;
+    let containerOffsetLeft = container.offsetLeft;
+    let containerOffsetTop = container.offsetTop;
 
     // Get x-coordinate of pointer relative to container
-    var pointerRelativeXpos = e.clientX - containerOffsetLeft;
-    var pointerRelativeYpos = e.clientY - containerOffsetTop;
+    let pointerRelativeXpos = e.clientX - containerOffsetLeft;
+    let pointerRelativeYpos = e.clientY - containerOffsetTop;
 
     // Arbitrary minimum width set on box A, otherwise its inner content will collapse to width of 0
-    var containerMin = 60;
+    let containerMin = 60;
+
+    god.innerHTML = `X: ${pointerRelativeXpos}<br>W: ${(Math.max(containerMin, pointerRelativeXpos - 8)) - (resizerEW.clientWidth / 2 )}`
 
     // Resize box A
     if (isHandlerDraggingEW) {

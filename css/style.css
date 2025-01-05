@@ -35,6 +35,15 @@
     --sb-bg: #1e1e1e;
 }
 
+#god{
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    font-size: 1.5rem;
+    color: red;
+    font-family: 'Inter', 'sans serif';
+}
+
 .loader span:after {
     animation: dots 1.5s linear infinite;
     content: '';
@@ -897,6 +906,8 @@ h3.proof:first-of-type {
         .out {
             flex-grow: 100;
 
+            min-width: fit-content;
+
             background-color: var(--sb-bg);
 
             p {
@@ -905,7 +916,6 @@ h3.proof:first-of-type {
                 height: 100%;
                 margin: 0;
                 padding: 10px 20px;
-
 
                 font-family: 'JetBrains Mono', monospace;
                 font-size: 14px;
@@ -993,6 +1003,8 @@ h3.proof:first-of-type {
             }
 
             .out {
+                min-height: fit-content;
+                
                 p {
                     font-size: 12px;
                 }
