@@ -200,6 +200,9 @@ require(['vs/editor/editor.main'], function () {
 });
 
 function prepare_output(out, is_err = false, re_sp = true) {
+    out = out.replaceAll("<", "&lt;")
+    out = out.replaceAll(">", "&gt;")
+
     out = out.replaceAll("\n", "<br>")
     out = out.replaceAll("\t", "    ")
     out = re_sp ? out.replaceAll(" ", "&nbsp;") : out

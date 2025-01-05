@@ -36,6 +36,8 @@
 }
 
 #god{
+    display: none !important;
+
     position: fixed;
     top: 10px;
     left: 10px;
@@ -867,7 +869,8 @@ h3.proof:first-of-type {
 
             border-radius: 20px !important;
 
-            overflow: hidden;
+            overflow-y: hidden;
+            /* overflow-x: scroll; */
         }
 
         .in {
@@ -906,7 +909,7 @@ h3.proof:first-of-type {
         .out {
             flex-grow: 100;
 
-            min-width: fit-content;
+            width: 0px;
 
             background-color: var(--sb-bg);
 
