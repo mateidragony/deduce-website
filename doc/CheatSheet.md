@@ -1,4 +1,4 @@
-# Cheat Sheet
+# Cheat Sheet (Testing)
 
 Here is some advice about what to do next in a proof. Options 1, 3,
 and 4 make use of the table below.
