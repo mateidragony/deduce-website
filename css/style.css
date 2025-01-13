@@ -77,7 +77,7 @@
 */
 
 * {
-    scroll-behavior: smooth;
+    /* scroll-behavior: smooth; */
     scroll-margin: 30px;
 }
 
@@ -102,12 +102,16 @@ h1 {
     font-size: 3rem;
 }
 
-h3 {
+h2 {
     font-size: 1.5rem;
 }
 
-h4 {
+h3 {
     font-size: 1.1rem;
+}
+
+h4{
+    font-size: .9rem;
 }
 
 a,
@@ -144,15 +148,15 @@ h1 {
 }
 
 
-h3 {
+h2 {
     margin: 0 0 15px;
 }
 
-h3:not(:first-of-type) {
+h2:not(:first-of-type) {
     margin-top: 60px;
 }
 
-h4 {
+h3 {
     margin: 40px 0 0;
 }
 
@@ -287,7 +291,7 @@ header {
             margin: 0;
         }
 
-        h3 {
+        h2 {
             font-size: 1.5rem;
             font-weight: 500;
             margin: 20px 0 0;
@@ -499,12 +503,17 @@ code.inline {
     }
 }
 
+a code.inline{
+    font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
+    color: var(--dark-blue);
+}
+
 section {
     font-family: 'Inter', sans-serif;
 
     article {
 
-        h3,
+        h2,
         p,
         ol,
         ul {
@@ -546,7 +555,7 @@ section.about {
 
             font-size: 1.15rem;
 
-            h3 {
+            h2 {
                 font-size: 2rem;
                 margin-bottom: 20px;
                 margin-top: 0;
@@ -580,7 +589,7 @@ section.blocks {
         /* border: solid 2px var(--blue); */
         /* border-radius: 10px; */
 
-        h3 {
+        h2 {
             font-size: 2rem;
             margin-bottom: 5px;
         }
@@ -622,7 +631,7 @@ section.example {
 
     max-width: 800px;
 
-    h3 {
+    h2 {
         margin-top: 0;
         margin-bottom: 25px;
 
@@ -731,42 +740,36 @@ table {
     }
 }
 
-ol.cheat-sheet {
 
-    /* font-size: .9rem; */
-    li {
-        line-height: 1.5;
+.cheat-sheet{
+    ol {
+
+        /* font-size: .9rem; */
+        li {
+            line-height: 1.5;
+        }
+    }
+    
+    table {
+        margin-top: 50px;
     }
 }
 
-table.cheat-sheet {
-    margin-top: 50px;
-}
 
-h3.reference:first-of-type,
-h3.programming:first-of-type,
-h3.proof:first-of-type {
-    margin-top: 40px;
-}
+.md{
+    h2:first-of-type {
+        margin-top: 40px;
+    }
 
-.first-in-section {
-    margin-top: 0;
+    .code-wrapper {
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
 }
-
-.code-wrapper.programming,
-.code-wrapper.proof {
-    margin-top: 20px;
-    margin-bottom: 20px;
-}
-
-.code-wrapper.exercise {
-    margin-top: 15px;
-}
-
+/* 
 .minimap {
     display: none;
-}
-
+} */
 
 #sandbox {
     max-width: 1500px;
@@ -1127,7 +1130,7 @@ h3.proof:first-of-type {
                 margin: 0;
             }
 
-            h3 {
+            h2 {
                 font-size: 1.25rem;
                 margin: 20px 0 0;
             }
@@ -1173,7 +1176,7 @@ h3.proof:first-of-type {
             figure {
                 font-size: 1rem;
 
-                h3 {
+                h2 {
                     margin-bottom: 15px;
                 }
             }
@@ -1184,7 +1187,7 @@ h3.proof:first-of-type {
         padding: 25px;
         margin-top: 110px;
 
-        h3 {
+        h2 {
             margin-bottom: 15px;
             font-size: 2rem;
         }

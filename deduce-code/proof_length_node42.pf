@@ -1,6 +1,8 @@
 import Nat
 import List
-
+import Set
+import MultiSet
+import Maps
 
 theorem length_node42: length([42]) = 1
 proof

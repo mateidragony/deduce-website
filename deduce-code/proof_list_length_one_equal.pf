@@ -1,6 +1,8 @@
 import Nat
 import List
-
+import Set
+import MultiSet
+import Maps
 
 theorem list_length_one_equal: all U:type. all x:U, y:U.
   length([x]) = length([y])

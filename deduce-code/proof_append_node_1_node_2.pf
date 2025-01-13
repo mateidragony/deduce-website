@@ -1,6 +1,8 @@
 import Nat
 import List
-
+import Set
+import MultiSet
+import Maps
 
 theorem append_node_1_node_2:
   [1] ++ [2] = [1, 2]

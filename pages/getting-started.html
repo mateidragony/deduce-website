@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -12,7 +13,9 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Josefin+Slab:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Josefin+Slab:ital,wght@0,100..700;1,100..700&display=swap"
+        rel="stylesheet">
 
     <!-- Font awesome -->
     <script src="https://kit.fontawesome.com/7005573326.js" crossorigin="anonymous"></script>
@@ -24,7 +27,7 @@
 
 <body>
 
-    <div class="container">
+    <div class="container md getting-started">
         <nav>
             <a class="nav-logo" href="../index.html">
                 <svg xmlns="http://www.w3.org/2000/svg" width="1668" height="402" fill="none" viewBox="0 0 1668 402">
@@ -64,43 +67,32 @@
                 </div>
             </div>
         </nav>
-    
-        <h1>Getting Started</h1>
-
-        <h3>Installation</h3>
-        <p>You will need <a target="_blank" href="https://www.python.org/">Python</a> version 3.10 or later. Here are some <a target="_blank" href="https://wiki.python.org/moin/BeginnersGuide/Download">instructions</a> and links to the download for various systems.</p>
-        <p>You will also need to install the <a target="_blank" href="https://github.com/lark-parser/lark">Lark</a> parsing library, which you can do by running the following command in the same directory as <code class="inline">deduce.py</code></p>
-
-        <div class="code-wrapper non-deduce">
-            <code>python -m pip install lark</code>
-        </div>
-
-        <h3>Source Code</h3>
-        <p>The source code for Deduce can be obtained from the following GitHub repository.</p>
-        <a target="_blank" href="https://github.com/jsiek/deduce">https://github.com/jsiek/deduce</a>
-
-        <h3>Deduce Introduction</h3>
-        <p>This introduction to Deduce has two parts. The first part gives a tutorial on how to write programs in Deduce. The second part shows how to write proofs in Deduce.</p>
-        <ul>
-            <li><a href="./deduce-programming.html">Programming in Deduce</a></li>
-            <li><a href="./deduce-proofs.html">Writing Proofs in Deduce</a></li>
-        </ul>
-        <p>I recommend that you work through the examples in this introduction. Create a file named <code class="inline">examples.pf</code> in the top <code class="inline">deduce</code> directory and add the examples one at a time. To check the file, run the <code class="inline">deduce.py</code> script on the file from the <code class="inline">deduce</code> directory.</p>
-
-        <p>You can also download one of these extensions for programming in Deduce in some common text editors.</p>
-
-        <ul>
-            <li>VSCode (<a target="_blank" href="https://github.com/HalflingHelper/deduce-mode">deduce-mode</a>). You can also install it from the extensions tab in VSCode</li>
-            <li>Emacs (<a target="_blank" href="https://github.com/mateidragony/deduce-mode">deduce-mode</a>)</li>
-        </ul>
-
-        <p>The Deduce Reference manual is linked below. It provides an alphabetical list of all the features in Deduce. The Cheat Sheet gives some advice regarding proof strategy and which Deduce keyword to use next in a proof. The Syntax Overview page provides a brief overview of the syntax structure of deduce.</p>
-        <ul>
-            <li><a href="./reference.html">Reference Manual</a></li>
-            <li><a href="./cheat-sheet.html">Cheat Sheet</a></li>
-            <li><a href="./syntax.html">Syntax Overview</a></li>
-        </ul>
-
+<h1 id="getting-started">Getting Started</h1>
+<h2 id="installation">Installation</h2>
+<p>You will need <a href="https://www.python.org/#" target="_blank">Python</a> version 3.10 or later. Here are some <a href="https://wiki.python.org/moin/BeginnersGuide/Download#" target="_blank">instructions</a> and links to the download for various systems.</p>
+<p>You will also need to install the <a href="https://github.com/lark-parser/lark#" target="_blank">Lark</a> parsing library, which you can do by running the following command in the same directory as <code class="inline">deduce.py</code></p>
+<div class="code-wrapper non-deduce"><code>python&nbsp;-m&nbsp;pip&nbsp;install&nbsp;lark</code></div>
+<h2 id="source-code">Source Code</h2>
+<p>The source code for Deduce can be obtained from the following GitHub repository.</p>
+<p><a href="https://github.com/jsiek/deduce#" target="_blank">https://github.com/jsiek/deduce</a></p>
+<h2 id="deduce-introduction">Deduce Introduction</h2>
+<p>This introduction to Deduce has two parts. The first part gives a tutorial on how to write programs in Deduce. The second part shows how to write proofs in Deduce.</p>
+<ul>
+<li><a href="./deduce-programming.html#" target="_self">Programming in Deduce</a></li>
+<li><a href="./deduce-proofs.html#" target="_self">Writing Proofs in Deduce</a></li>
+</ul>
+<p>I recommend that you work through the examples in this introduction. Create a file named <code class="inline">examples.pf</code> in the top <code class="inline">deduce</code> directory and add the examples one at a time. To check the file, run the <code class="inline">deduce.py</code> script on the file from the <code class="inline">deduce</code> directory.</p>
+<p>You can also download one of these extensions for programming in Deduce in some common text editors.</p>
+<ul>
+<li>VSCode (<a href="https://github.com/HalflingHelper/deduce-mode#" target="_blank">deduce-mode</a>). You can also install it from the extensions tab in VSCode</li>
+<li>Emacs (<a href="https://github.com/mateidragony/deduce-mode#" target="_blank">deduce-mode</a>)</li>
+</ul>
+<p>The Deduce Reference manual is linked below. It provides an alphabetical list of all the features in Deduce. The Cheat Sheet gives some advice regarding proof strategy and which Deduce keyword to use next in a proof. The Syntax Overview page provides a brief overview of the syntax structure of deduce.</p>
+<ul>
+<li><a href="./reference.html#" target="_self">Reference Manual</a></li>
+<li><a href="./cheat-sheet.html#" target="_self">Cheat Sheet</a></li>
+<li><a href="./syntax.html#" target="_self">Syntax Overview</a></li>
+</ul>
         <footer>
             <a class="nav-logo" href="../index.html">
                 <svg xmlns="http://www.w3.org/2000/svg" width="1668" height="402" fill="none" viewBox="0 0 1668 402">
@@ -133,7 +125,8 @@
             </a>
             <div class="footer-links">
                 <div class="footer-col">
-                    <a href="./getting-started.html">Get Started</a><a href="./sandbox.html">Live Code</a>
+                    <a href="./getting-started.html">Get Started</a>
+                    <a href="./sandbox.html">Live Code</a>
                     <a href="https://github.com/jsiek/deduce" target="_blank">Source Code</a>
                     <a href="https://github.com/HalflingHelper/deduce-mode" target="_blank">VS-Code deduce-mode</a>
                     <a href="https://github.com/mateidragony/deduce-mode" target="_blank">Emacs deduce-mode</a>

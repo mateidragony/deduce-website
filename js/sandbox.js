@@ -59,6 +59,7 @@ function create_editor(fs, tm) {
         language: 'deduce',
         automaticLayout: true,
         tabSize: 2,
+        minimap: {enabled: false},
     });
 }
 
@@ -109,7 +110,7 @@ require(['vs/editor/editor.main'], function () {
         tokenizer: {
             root: [
                 // identifiers and keywords
-                [/[a-zA-Z$][\w$]*/, {
+                [/[a-zA-Z'$][\w$]*/, {
                     cases: {
                         '@typeKeywords': 'typeKeyword',
                         '@keywords': 'keyword',

@@ -1,6 +1,8 @@
 import Nat
 import List
-
+import Set
+import MultiSet
+import Maps
 
 theorem really_trivial: true
 proof
